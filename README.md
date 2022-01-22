@@ -1,6 +1,8 @@
+This repository is just to show ans teach some of the Supervised ML models used to solve Classification problems.
+
 # Customer Segmentation in Banking
 
-In this repository I'll try to classify the customers of a bank, in order to know who should be targeted by a certain type of marketing. This will allow the company to select precisely to whom they should sell each type of service.
+In this repository I'll classify the customers of a bank, in order to know who should be targeted by a certain type of marketing. This will allow the company to select precisely to whom they should sell each type of service.
 
 This segmentation will be done through the use of different Machine Learning models, such as the following:
 - Logistic Regression
@@ -11,10 +13,22 @@ This segmentation will be done through the use of different Machine Learning mod
 - AdaBoost
 - XGBoost
 
-## [Data](https://archive.ics.uci.edu/ml/datasets/Bank+Marketing) (Attribute Information)
+---
 
-### Input variables:
-**Bank client data:**
+### Background:
+
+A banking institution has been running several marketing campaigns through telephone calls for several years. With all the data collected, this company would like to know if they can improve the efficiency of these campaigns by pinpointing more accurately the customers to whom the phone calls are focused.
+
+
+### Task:
+
+In this project, the objective is to predict which customers are likely to contract the service based on certain attributes.
+
+
+### [Feature Descriptions](https://archive.ics.uci.edu/ml/datasets/Bank+Marketing):
+
+**Input variables:**
+#### Bank client data:
 
 1 - age (numeric)
 
@@ -30,7 +44,7 @@ This segmentation will be done through the use of different Machine Learning mod
 
 7 - loan: has personal loan? (categorical: 'no','yes','unknown')
 
-**Related with the last contact of the current campaign:**
+#### Related with the last contact of the current campaign:
 
 8 - contact: contact communication type (categorical: 'cellular','telephone')
 
@@ -40,7 +54,7 @@ This segmentation will be done through the use of different Machine Learning mod
 
 11 - duration: last contact duration, in seconds (numeric). Important note: this attribute highly affects the output target (e.g., if duration=0 then y='no'). Yet, the duration is not known before a call is performed. Also, after the end of the call y is obviously known. Thus, this input should only be included for benchmark purposes and should be discarded if the intention is to have a realistic predictive model.
 
-**Other attributes:**
+#### Other attributes:
 
 12 - campaign: number of contacts performed during this campaign and for this client (numeric, includes last contact)
 
@@ -50,7 +64,7 @@ This segmentation will be done through the use of different Machine Learning mod
 
 15 - poutcome: outcome of the previous marketing campaign (categorical: 'failure','nonexistent','success')
 
-**Social and economic context attributes**
+#### Social and economic context attributes
 
 16 - emp.var.rate: employment variation rate - quarterly indicator (numeric)
 
@@ -62,39 +76,44 @@ This segmentation will be done through the use of different Machine Learning mod
 
 20 - nr.employed: number of employees - quarterly indicator (numeric)
 
-### Output variable (desired target):
+**Output variable (desired target):**
 21 - y - has the client subscribed a term deposit? (binary: 'yes','no')
 
 ---
+### Methodology
+
+  - **Data Understanding:** 
+    - Check the type of values of each column and shape of the DataFrame 
+    - Check if the df has NaN values
+    - Plot histograms to check all the numerical features (Distributions and Outliers)
+    - Check the number of categories per categorical feature and take a closer look at features with many categories
+  
+  - **Data preparation and preprocessing:**
+    - Drop "duration" feaure (Explained in the notebook)
+    - Define X and Y
+    - Split the data into train and test data: train_test_split (sklearn.model_selection)
+    - Split numerical and categorical features
+    - Pipeline: we created pipelines for both the categorical (incl. OneHotEncoder) and the numeric data (incl. StandardScaler) as well as a preprocessor (ColumnTransformer) to combine these two pipelines
+    
+  - **Superviced Machine Learning Algorithm:**
+    - Compare several models, just to check how each of them works.
+      - Logistic Regression: Cross validaion with No Penaly, L1 (Lasso) and L2 (Ridge).
+      - KNN (K-Nearest Neighbour)
+      - Naive Bayes
+      - SVM
+      - Random Forest
+      - AdaBoost
+      - XGBoost
+      
+    Surprisingly the best scoring model was Logistic Regression, and one of the main reasons could be because it was the only one to which Hyperparameter Tuning was applied.
+    
+    - Feature Importance: 
+    
+    Trees based models like RandomForest, XGBoost, etc. provide us feature importance based on the training. A very relevant aspect if you want to know more about how each of the features affects.
+
 ---
-## Notebook process
 
-### Data understanding
-
-
-### Data preparation
-
-
-### Logistic Regression
-Let's compare how Logistic Regression with no penalty, L1 and L2 penalties works
-- Cross-validation and Model Selection
-
-Selection of the best and worst model, to then plot the ROC curve
-
-### KNN (K-Nearest Neighbour)
-
-
-### Naive Bayes
-
-
-### SVM
-
-
-### Random Forest
-
-
-### AdaBoost
-
-
-### XGBoost
-
+### Future steps:
+- Hyperparameter Tuning
+- Feature Interpretation (SHAP)
+- Provide a conclusion based on what has been learned, about this business problem.
