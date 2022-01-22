@@ -110,6 +110,11 @@ In this project, the objective is to predict which customers are likely to contr
     - Feature Importance: 
     
     Trees based models like RandomForest, XGBoost, etc. provide us feature importance based on the training. A very relevant aspect if you want to know more about how each of the features affects.
+    
+<p align="center">
+  <image src="https://github.com/wanaguirre/data_visualization/blob/main/Notebooks/images/Swiss_economy.png"/>
+</p>
+
 
 ---
 
